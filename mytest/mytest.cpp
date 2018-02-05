@@ -10,6 +10,113 @@
 #define N 10000
 #define CAL 5
 
+int calc(int R[], int len, int num)
+{
+	int i;
+	int carry = 0;
+	for (i = 0; i < len; i++)
+	{
+		carry += R[i] * num;
+		R[i] = carry % 10;
+		carry = carry / 10;
+	}
+	while (carry>0)
+	{
+		R[len] = carry % 10;
+		len++;
+		carry = carry / 10;
+	}
+	return len;
+}
+int main()
+{
+	int i, R[512] = {0};
+	R[0] = 1;
+	int len = 1;
+	for (i = 2; i <= 100; i++)
+	{
+		len = calc(R, len, i);
+	}
+	for (i = len - 1; i >= 0; i--)
+	{
+		printf("%d", R[i]);
+	}
+	printf("\n");
+	return 0;
+}
+/*
+int main()
+{
+	int n;
+	int a[900];
+	int digit = 1;
+	int temp;
+	int i, j, carry;
+	printf("please input n:\n");
+	scanf("%d", &n);
+	a[0] = 1;
+	for (i = 2; i <=n; i++)
+	{
+		for ( j = 1,carry=0; j <=digit; j++)
+		{
+			temp = a[j - 1] * i + carry;
+			a[j - 1] = temp % 10;
+			carry = temp / 10;
+		}
+		while (carry)
+		{
+			a[++digit - 1] = carry % 10;
+			carry = carry / 10;
+		}
+	}
+	printf("%d!=",n);
+	for (j = digit; j >= 1; j--)
+	{
+		printf("%d", a[j - 1]);
+	}
+	printf("\n");
+	return 0;
+}
+*/
+
+/*
+int Calc(int nResult[], int len, int nNumb)
+{
+	int i, rem = 0;
+	for (i = 0; i<len; i++) {
+		rem += nResult[i] * nNumb;
+		nResult[i] = rem % 10;
+		rem = rem / 10;
+	}
+	while (rem>0) {
+		nResult[len] = rem % 10;
+		len++;
+		rem = rem / 10;
+	}
+	return len;
+}
+
+void main()
+{
+	int nResult[512] = { 0 };   //±£´æ½á¹û 
+	int i = 0, len = 1;
+
+	nResult[0] = 1;
+	for (i = 2; i <= 100; i++) {    //100½×³Ë
+		len = Calc(nResult, len, i);
+	}
+
+	for (i = len - 1; i >= 0; i--) {
+		printf("%d", nResult[i]);
+	}
+
+	printf("\n");
+	getchar();
+
+	return;
+}
+*/
+/*
 double testln(int x)
 {
 	double y = exp(-1.0 / 2.0 * x*x);
@@ -33,7 +140,7 @@ int main(void)
 	printf("%lf",exp(-1.0/2.0 * 10));
 	return 0;
 }
-
+*/
 
 /*
 void stdline(int *h, int n)
